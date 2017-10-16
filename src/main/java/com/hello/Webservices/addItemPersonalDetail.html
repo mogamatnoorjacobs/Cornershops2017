@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add or Update Item</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        function addItemPersonalDetail() {
+
+            var personID=$("#personID").val();
+            var firstName=$("#firstName").val();
+            var lastName=$("#lastName").val();
+
+
+            $.ajax(
+                    {
+                        type: 'GET',
+                        url: 'http://localhost:8080/hello/addItemPersonalDetails',
+                        data: {
+
+                            'personID' : personID,
+                            'firstName' : firstName,
+                            'lastName' : lastName
+                        },
+                        success: function(data) {
+                            console.log('Successful');
+                            return true;
+                        }
+                    });
+        }
+
+    </script>
+</head>
+
+<body>
+
+<h1>Add an Item</h1>
+
+<form action='http://localhost:8080/hello/addItemPersonalDetails' onsubmit="return addItemPersonalDetail()"  method="get">
+
+    Personal ID  <input type="text" id="personID" name="personID" value="6"><br>
+    Name  <input type="text" id="firstName" name="firstName" value="noor"><br>
+    Surname  <input type="text" id="lastName" name="lastName" value="bokmakieire"><br>
+
+  
+
+
+    <input type="submit" value="Submit">
+
+</form>
+
+</body>
+</html>

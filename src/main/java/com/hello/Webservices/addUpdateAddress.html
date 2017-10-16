@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add or Update Address</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        function addAddressDetails() {
+            var addressID=$("#addressID").val();
+            var streetNumber=$("#streetNumber").val();
+            var streetName=$("#streetName").val();
+            var area=$("#area").val();
+            var suburb=$("#suburb").val();
+            var city=$("#city").val();
+
+            $.ajax(
+                    {
+                type: 'GET',
+                url: 'http://localhost:8080/hello/addUpdateAddress',
+                data: {
+                    'addressID' : addressID,
+                    'streetNumber' : streetNumber,
+                    'streetName' : streetName,
+                    'area' : area,
+                    'suburb' : suburb,
+                    'city' : city
+                },
+                success: function(data) {
+                    console.log('Successful');
+                    return true;
+                }
+            });
+        }
+
+//Find Address
+        function getAddressDetails() {
+            //var addressID=document.getElementByName("addressID").value;
+            var addressID=$("#addressSearchID").val();
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:8080/hello/findAddressById',
+                data: {'addressID' : addressID},
+                success: function(data) {
+                    console.log('Successful');
+                    return true;
+                }
+           });
+        }
+//Delete Address
+        function deleteAddressDetails() {
+            //var addressID=document.getElementByName("addressID").value;
+            var addressID=$("#addressSearchID").val();
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:8080/hello/deleteAddress',
+                data: {'addressID' : addressID},
+                success: function(data) {
+                    console.log('Successful');
+                    return true;
+                }
+            });
+        }
+
+    </script>
+</head>
+<body>
+
+<h1>Add an Address</h1>
+
+<form action='http://localhost:8080/hello/addUpdateAddress/' onsubmit="return addAddressDetails()"  method="get">
+
+
+    Address ID  <input type="text" id="addressID" name="addressID" value="2"><br>
+    Street Number  <input type="text" id="streetNumber" name="streetNumber" value="24"><br>
+    Street Name  <input type="text" id="streetName" name="streetName" value="bokmakieire"><br>
+    Area  <input type="text" id="area" name="area" value="belgravia"><br>
+    Suburb <input type="text" id="suburb" name="suburb" value="athlone"><br>
+    City  <input type="text" id="city" name="city" value="Cape town"><br>
+
+    <input type="submit" value="Submit">
+
+</form>
+
+<h1>Find an Address by ID</h1>
+
+<form action='http://localhost:8080/hello/findAddressById' onsubmit="return getAddressDetails()"  method="get">
+
+   Search Adress by Address ID:<br>
+      <input type="text" id="addressSearchID" name="addressID"><br>
+
+       <input type="submit" value="Submit">
+
+
+</form>
+
+
+<h1>Delete an Address by ID</h1>
+
+<form action='http://localhost:8080/hello/deleteAddress' onsubmit="return deleteAddressDetails()"  method="get">
+
+    Search Adress by Address ID:<br>
+      <input type="text" id="addressSearchIDDelete" name="addressID"><br>
+
+    <input type="submit" value="Submit">
+
+
+</form>
+
+
+</body>
+</html>

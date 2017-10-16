@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cornershops</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        function getAddressDetails() {
+            //var addressID=document.getElementByName("addressID").value;
+            var addressID=$("#addressID").val();
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:8080/hello/findAddressById',
+                data: {'addressID' : addressID},
+                success: function(data) {
+                    console.log('Successful');
+                    return true;
+                }
+            });
+        }
+    </script>
+</head>
+
+<body>
+
+<h1>Find an Item</h1>
+
+<form action='http://localhost:8080/hello/findAddressById' onsubmit="return getAddressDetails()"  method="get">
+
+    Adress:<br>
+      <input type="text" id="addressID" name="addressID"><br>
+
+
+
+
+    <input type="submit" value="Submit">
+
+</form>
+
+
+
+</body>
+</html>

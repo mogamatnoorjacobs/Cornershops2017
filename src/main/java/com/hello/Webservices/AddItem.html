@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add or Update Item</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script>
+        function addItemDetails() {
+
+            var personID=$("#personID").val();
+            var firstName=$("#firstName").val();
+            var lastName=$("#lastName").val();
+
+            var businessId=$("#itemID").val();
+            var businessName=$("#businessName").val();
+            var businessDescription=$("#businessDescription").val();
+
+            var contactID=$("#itemID").val();
+            var cellNumber=$("#cellNumber").val();
+            var homeNumber=$("#homeNumber").val();
+            var emailAddress=$("#emailAddress").val();
+            var website=$("#website").val();
+            var otherLinks=$("#otherLinks").val();
+
+            var addressID=$("#itemID").val();
+            var streetNumber=$("#streetNumber").val();
+            var streetName=$("#streetName").val();
+            var area=$("#area").val();
+            var suburb=$("#suburb").val();
+            var city=$("#city").val();
+
+            var categoryId=$("#itemID").val();
+            var category=$("#category").val();
+
+            var subCategoryId =$("#itemID").val();
+            var subCategory=$("#subCategory").val();
+
+
+            $.ajax(
+                    {
+                        type: 'GET',
+                        url: 'http://localhost:8080/hello/addItem',
+                        data: {
+
+                            'personID' : personID,
+                            'firstName' : firstName,
+                            'lastName' : lastName,
+
+            'businessId':businessId,
+            'businessName':businessName,
+            'businessDescription':businessDescription,
+
+            'contactID':contactID,
+            'cellNumber':cellNumber,
+            'homeNumber':homeNumber,
+            'emailAddress':emailAddress,
+            'website':website,
+            'otherLinks':otherLinks,
+
+            'addressID':addressID,
+            'streetNumber':streetNumber,
+            'streetName':streetName,
+            'area':area,
+            'suburb':suburb,
+            'city':city,
+
+            'categoryId':categoryId,
+            'category':category,
+
+            'subCategoryId':subCategoryId,
+             'subCategory':subCategory
+             },
+                        success: function(data) {
+                            console.log('Successful');
+                            return true;
+                        }
+                    });
+                }
+
+    </script>
+</head>
+
+<body>
+
+<h1>Add an Item</h1>
+
+<form action='http://localhost:8080/hello/addItem' onsubmit="return addItemDetails()"  method="get">
+
+    Personal ID  <input type="text" id="personID" name="personID" value="6"><br>
+    Name  <input type="text" id="firstName" name="firstName" value="noor"><br>
+    Surname  <input type="text" id="lastName" name="lastName" value="bokmakieire"><br>
+
+
+      Business Name:  <input type="text" id="businessName" name="businessName" value="Cornershops">  <br><br>
+
+
+      <label for="businessDescription">Business Description</label><br>
+    <textarea input type="text" id="businessDescription" name="businessDescription" placeholder="Write something.." style="height:100px"></textarea>
+    <br><br>
+      
+      Street Number: <input type="text" id="streetNumber" name="streetNumber" value="26"><br><br>
+     
+
+      Street Name:  <input type="text" id="streetName" name="streetName" value="3rd avenue"><br><br>
+
+      Area: <input type="text" id="area" name="area" value="Hazendal"><br><br>
+     
+      Suburb: <input type="text" id="suburb" name="suburb" value="athlone"><br><br>
+     
+      City:<input type="text" id="city" name="city" value="cape town"><br><br>
+
+      CellNumber:<input type="text" id="cellNumber" name="cellNumber" value="081549648"><br><br>
+      HomeNumber:<input type="text" id="homeNumber" name="homeNumber" value="654789552"><br><br>
+      EmailAddress:<input type="text" id="emailAddress" name="emailAddress" value="bls@kdjfd"><br><br>
+      Website:<input type="text" id="website" name="website" value="www.gjkd.com"><br><br>
+      OtherLinks:<input type="text" id="otherLinks" name="otherLinks" value="www.fadkjdlk.com"><br><br>
+
+
+    Main Category:<input type="text" id="category" name="category" value="Food"><br><br>
+
+    Sub Category:<input type="text" id="subCategory" name="subCategory" value="Pies"><br><br>
+
+
+    <!-- <label for="category">Main Category</label>-->
+    <!-- <br>-->
+    <!--  <input type="checkbox" name="food" value="food">Food<br>-->
+    <!--  <input type="checkbox" name="fashion" value="fashion" checked>Fashion<br>-->
+    <!--<br>-->
+
+
+    <!-- <label for="subCategory">Sub Category</label>-->
+    <!-- <br>-->
+    <!--  <input type="checkbox" name="curry" value="curry">Curry<br>-->
+    <!--  <input type="checkbox" name="clothes" value="clothes" checked>Clothes<br>-->
+    <!--<br>-->
+
+    <input type="submit" value="Submit">
+
+</form>
+
+</body>
+</html>

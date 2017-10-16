@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add or Update Main Categories</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        function addMainCategories() {
+            var categoryId=$("#categoryId").val();
+            var category=$("#category").val();
+
+            $.ajax(
+                    {
+                        type: 'GET',
+                        url: 'http://localhost:8080/hello/addMainCategories',
+                        data: {
+                            'categoryId':categoryId,
+                            'category':category,
+                        },
+                        success: function(data) {
+                            console.log('Successful');
+                            return true;
+                        }
+                    });
+        }
+
+
+        function findMainCategories() {
+
+            var categoryId=$("#categoryIdSearch").val();
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:8080/hello/findMainCategories',
+                data: {'categoryId' : categoryId},
+                success: function(data) {
+                    console.log('Successful');
+                    return true;
+                }
+            });
+        }
+        //Delete Main Category
+        function deleteMainCategorie() {
+
+            var categoryId=$("#MainCategoriesDelete").val();
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:8080/hello/deleteMainCategories',
+                data: {'categoryId' : categoryId},
+                success: function(data) {
+                    console.log('Successful');
+                    return true;
+                }
+            });
+        }
+
+    </script>
+</head>
+<body>
+
+<h1>Add a Main Category</h1>
+
+<form action='http://localhost:8080/hello/addMainCategories/' onsubmit="return addMainCategories()"  method="get">
+
+    Main Category ID:<input type="text" id="categoryId" name="categoryId" value="1"><br><br>
+    Main Category:<input type="text" id="category" name="category" value="Food"><br><br>
+
+    <input type="submit" value="Submit">
+
+</form>
+
+<h1>Find MainCategory by ID</h1>
+
+<form action='http://localhost:8080/hello/findMainCategories' onsubmit="return findMainCategories()"  method="get">
+
+
+      <input type="text" id="categoryIdSearch" name="categoryId" value="1"> <br>
+
+    <input type="submit" value="Submit">
+
+
+</form>
+
+
+<h1>Delete MainCategory by ID</h1>
+
+<form action='http://localhost:8080/hello/deleteMainCategories' onsubmit="return deleteMainCategorie()"  method="get">
+
+
+      <input type="text" id="MainCategoriesDelete" name="categoryId"><br>
+
+    <input type="submit" value="Submit">
+
+</form>
+
+
+</body>
+</html>

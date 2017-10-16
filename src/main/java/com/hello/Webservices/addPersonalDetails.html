@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add or Update Address</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        function addPersonalDetails() {
+            var personID=$("#personID").val();
+            var firstName=$("#firstName").val();
+            var lastName=$("#lastName").val();
+
+
+            $.ajax(
+                    {
+                        type: 'GET',
+                        url: 'http://localhost:8080/hello/addUpdateAddress',
+                        data: {
+                            'personID' : personID,
+                            'firstName' : firstName,
+                            'lastName' : lastName
+
+                        },
+                        success: function(data) {
+                            console.log('Successful');
+                            return true;
+                        }
+                    });
+        }
+
+        //Find Person Details
+        function getPersonetails() {
+
+            var personID=$("#personID").val();
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:8080/hello/findPersonDetails',
+                data: {'personID' : personID},
+                success: function(data) {
+                    console.log('Successful');
+                    return true;
+                }
+            });
+        }
+        //Delete Address
+        function deleteAddressDetails() {
+            //var addressID=document.getElementByName("addressID").value;
+            var personID=$("#searchPersonID").val();
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:8080/hello/deletePersonDetails',
+                data: {'personID' : personID},
+                success: function(data) {
+                    console.log('Successful');
+                    return true;
+                }
+            });
+        }
+
+    </script>
+</head>
+<body>
+
+<h1>Add an Address</h1>
+
+<form action='http://localhost:8080/hello/addPersonDetails/' onsubmit="return addPersonalDetails()"  method="get">
+
+
+    Personal ID  <input type="text" id="personID" name="personID" value="6"><br>
+    Name  <input type="text" id="firstName" name="firstName" value="noor"><br>
+    Surname  <input type="text" id="lastName" name="lastName" value="bokmakieire"><br>
+
+
+    <input type="submit" value="Submit">
+
+</form>
+
+<h1>Find an Person by ID</h1>
+
+<form action='http://localhost:8080/hello/findPersonDetails' onsubmit="return getPersonDetails()"  method="get">
+
+    Search Person Details by Person Details ID:<br>
+      <input type="text" id="personDetailsSearchID" name="personID"><br>
+
+    <input type="submit" value="Submit">
+
+
+</form>
+
+
+<h1>Delete an Address by ID</h1>
+
+<form action='http://localhost:8080/hello/deletePersonDetails' onsubmit="return deletePersonDetails()"  method="get">
+
+    Delete Person Details by Person Details ID:<br>
+      <input type="text" id="personDetailsSearchIDs" name="personID"><br>
+
+    <input type="submit" value="Submit">
+
+
+</form>
+
+
+</body>
+</html>
